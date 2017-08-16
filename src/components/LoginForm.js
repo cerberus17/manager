@@ -3,7 +3,7 @@ import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Card, CardSection, Input, Button } from './common';
-import { emailChanged, passwordChanged } from "../actions/index";
+import { emailChanged, passwordChanged, loginUser } from "../actions/index";
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -12,6 +12,15 @@ class LoginForm extends Component {
 
   onPasswordChange(text) {
     this.props.passwordChanged(text);
+  }
+
+  onButtonPress() {
+    const loginUser = {
+      email: this.props.email,
+      password: this.props.password
+    };
+
+    this.props.loginUser(loginUser);
   }
 
   render() {
@@ -34,7 +43,7 @@ class LoginForm extends Component {
             </CardSection>
 
             <CardSection>
-              <Button>
+              <Button onPress={this.onButtonPress.bind(this)}>
                 Login
               </Button>
             </CardSection>
@@ -51,4 +60,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);
