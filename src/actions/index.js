@@ -15,14 +15,29 @@ export const passwordChanged = (text) => {
   }
 };
 
-export const loginUser = ({email, password}) => {
+export const loginUser = ({ email, password }) => {
   return (dispatch) => {
+    dispatch({ type: actions.LOGIN_USER });
+
     firebase.auth().signInWithEmailAndPassword(email, password)
-            .then(user => {
-              dispatch({
-                type: actions.LOGIN_USER_SUCCESS,
-                user: user
-              });
+            .then(user => loginUserSuccess(dispatch, user))
+            .catch(() => {
+              firebase.auth().createUserWithEmailAndPassword(email, password)
+                      .then(user => loginUserSuccess(dispatch, user))
+                      .catch(() => loginUserFailure(dispatch));
             });
-  }
+  };
+};
+
+const loginUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: actions.LOGIN_USER_SUCCESS,
+    user: user
+  });
+};
+
+const loginUserFailure = (dispatch) => {
+  dispatch({
+    type: actions.LOGIN_USER_FAILURE
+  });
 };

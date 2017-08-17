@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
 import { connect } from 'react-redux';
 
-import { Card, CardSection, Input, Button } from './common';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 import { emailChanged, passwordChanged, loginUser } from "../actions/index";
 
 class LoginForm extends Component {
@@ -23,6 +23,17 @@ class LoginForm extends Component {
     this.props.loginUser(loginUser);
   }
 
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />
+    }
+
+    return (
+        <Button onPress={this.onButtonPress.bind(this)}>
+          Login
+        </Button>
+    );
+  }
   render() {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -42,10 +53,12 @@ class LoginForm extends Component {
                      placeholder="password" />
             </CardSection>
 
+            <Text style={styles.errorTextStyle}>
+              {this.props.error}
+            </Text>
+
             <CardSection>
-              <Button onPress={this.onButtonPress.bind(this)}>
-                Login
-              </Button>
+              {this.renderButton()}
             </CardSection>
           </Card>
         </TouchableWithoutFeedback>
@@ -53,10 +66,20 @@ class LoginForm extends Component {
   }
 }
 
+const styles = StyleSheet.create({
+  errorTextStyle: {
+    fontSize: 20,
+    color: 'red',
+    alignSelf: 'center'
+  }
+});
+
 const mapStateToProps = (state) => {
   return {
     email: state.auth.email,
-    password: state.auth.password
+    password: state.auth.password,
+    error: state.auth.error,
+    loading: state.auth.loading
   }
 };
 
