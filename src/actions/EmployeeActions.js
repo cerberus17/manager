@@ -28,3 +28,17 @@ export const createEmployee = (props) => {
   };
 };
 
+export const retrieveEmployees = () => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+        .on('value', metadata => {
+          dispatch({
+            type: actions.EMPLOYEE_LIST_RETRIEVAL_SUCCESS,
+            payload: metadata.val()
+          })
+        });
+  };
+};
+
