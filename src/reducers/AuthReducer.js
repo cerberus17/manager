@@ -1,4 +1,4 @@
-import * as actions from "../actions/Types";
+import * as actions from '../actions/Types';
 
 const INITIAL_STATE = {
   email: 'test@test.com',
