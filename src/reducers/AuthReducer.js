@@ -1,8 +1,8 @@
 import * as actions from "../actions/Types";
 
 const INITIAL_STATE = {
-  email: '',
-  password: '',
+  email: 'test@test.com',
+  password: 'password',
   user: null,
   error: '',
   loading: null
