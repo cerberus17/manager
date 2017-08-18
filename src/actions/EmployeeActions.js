@@ -14,14 +14,17 @@ export const employeeFieldUpdated = (property, text) => {
 export const createEmployee = (props) => {
   const { currentUser } = firebase.auth();
 
-  return () => {
+  return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
             .push({
               name: props.name,
               phone: props.phone,
               shift: props.shift
             })
-            .then(() => Actions.employeeList({ type: 'reset' }));
+            .then(() => {
+              dispatch({ type: actions.EMPLOYEE_CREATE_RESET });
+              Actions.employeeList({ type: 'reset' })
+            });
   };
 };
 
