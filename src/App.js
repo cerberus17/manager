@@ -19,6 +19,10 @@ class App extends Component {
   }
 
   render() {
+    console.ignoredYellowBox = [
+      'Setting a timer'
+    ];
+
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
     return (
