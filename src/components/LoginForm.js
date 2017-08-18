@@ -3,7 +3,7 @@ import { StyleSheet, Keyboard, Text } from 'react-native';
 import { connect } from 'react-redux';
 
 import { Card, CardSection, Input, Button, Spinner } from './common';
-import { emailChanged, passwordChanged, loginUser } from "../actions/index";
+import { emailChanged, passwordChanged, loginUser } from "../actions/LoginActions";
 
 class LoginForm extends Component {
   onEmailChange(text) {
