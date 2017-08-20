@@ -34,10 +34,12 @@ export const retrieveEmployees = () => {
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/employees`)
         .on('value', metadata => {
+          console.log("ON");
+          console.log(metadata.val());
           dispatch({
             type: actions.EMPLOYEE_LIST_RETRIEVAL_SUCCESS,
             payload: metadata.val()
-          })
+          });
         });
   };
 };

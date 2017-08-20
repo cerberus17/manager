@@ -1,7 +1,7 @@
 import * as actions from '../actions/Types';
 
 const INITIAL_STATE = {
-
+  "employeeList": {}
 };
 
 export default (state = INITIAL_STATE, action) => {
