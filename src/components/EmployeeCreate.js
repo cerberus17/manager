@@ -5,6 +5,8 @@ import { Card, CardSection, Button } from './common';
 import { employeeFieldUpdated, createEmployee } from "../actions/EmployeeActions";
 import EmployeeForm from './EmployeeForm';
 
+// TODO: BUG WHEN GOING FROM EDIT -> BACK -> CREATE
+// TODO: (STATE FROM EDIT SHOWS IN CREATE EMPLOYEE)
 class EmployeeCreate extends Component {
   onButtonPress() {
     const employee = {
