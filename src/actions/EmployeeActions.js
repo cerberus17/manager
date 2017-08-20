@@ -59,3 +59,15 @@ export const updateEmployee = (props) => {
   };
 };
 
+export const deleteEmployee = (props) => {
+  const { currentUser } = firebase.auth();
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${props.uid}/`)
+            .remove()
+            .then(() => {
+              Actions.employeeList({ type: 'reset' });
+            });
+  };
+};
+

@@ -15,7 +15,7 @@ const ConfirmationModal = (props) => {
 
           <CardSection>
             <Button onPress={props.onAccept}>Yes</Button>
-            <Button onPress={props.onReject}>No</Button>
+            <Button onPress={props.onDecline}>No</Button>
           </CardSection>
         </View>
       </Modal>

@@ -8,3 +8,4 @@ export const EMPLOYEE_FIELD_UPDATED = 'employee_field_updated';
 export const EMPLOYEE_CREATE_RESET = 'employee_create_reset';
 export const EMPLOYEE_SAVE_RESET = 'employee_save_reset';
 export const EMPLOYEE_LIST_RETRIEVAL_SUCCESS = 'employee_list_retrieval_success';
+export const EMPLOYEE_DELETE = 'employee_delete';
