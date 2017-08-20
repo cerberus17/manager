@@ -11,6 +11,7 @@ export default (state = INITIAL_STATE, action) => {
     case actions.EMPLOYEE_FIELD_UPDATED:
       return { ...state, [action.property]: action.value };
     case actions.EMPLOYEE_CREATE_RESET:
+    case actions.EMPLOYEE_SAVE_RESET:
       return INITIAL_STATE;
     default:
       return state;

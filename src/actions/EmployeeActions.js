@@ -53,7 +53,7 @@ export const updateEmployee = (props) => {
               shift: props.shift
             })
             .then(() => {
-              dispatch({ type: actions.EMPLOYEE_CREATE_RESET });
+              dispatch({ type: actions.EMPLOYEE_SAVE_RESET });
               Actions.employeeList({ type: 'reset' })
             });
   };
