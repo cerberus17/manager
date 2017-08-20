@@ -42,3 +42,20 @@ export const retrieveEmployees = () => {
   };
 };
 
+export const updateEmployee = (props) => {
+  const { currentUser } = firebase.auth();
+
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees/${props.uid}/`)
+            .set({
+              name: props.name,
+              phone: props.phone,
+              shift: props.shift
+            })
+            .then(() => {
+              dispatch({ type: actions.EMPLOYEE_CREATE_RESET });
+              Actions.employeeList({ type: 'reset' })
+            });
+  };
+};
+
